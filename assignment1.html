@@ -4,7 +4,7 @@
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-        <title>Example Student's HCDE 439 Physical Computing Page!</title> 
+        <title>Erin Graves' HCDE 439 Physical Computing Page!</title> 
 
         <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -12,13 +12,78 @@
     <body> 
 
         <div class="header">
-            <h1>Example Student's Assignment 1!</h1>
+            <h1>Erin Graves' Assignment 1!</h1>
+            <h2>Overview</h2>
+            <p>Create a schematic for at least 3 LEDs connected to your Arduino, which you will implement as a circuit on your breadboard. Write firmware (in a .ino file) for the circuit that makes the LEDs blink in a pattern. 
+            <h2>Code Snippet </h2>
             <p>
-            <img src="red-panda.jpg" width=400></a>
+                I coded my LEDs so that they would alternate from red to blue to yellow and then reverse to cycle back to red.
+                <pre>
+            <code>
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(12, OUTPUT); // initiates red LED
+  pinMode(11, OUTPUT); // initiates blue LED
+  pinMode(9, OUTPUT); // initiates yellow LED
+
+  digitalWrite(12,HIGH); // red LED starts turned off
+  digitalWrite(11,HIGH); // blue LED starts turned off
+  digitalWrite(9,HIGH); // yellow LED starts turned off
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(12, LOW);   // turn the red LED on (by setting pin 12 to ground)
+  delay(500);                       // wait for a half-second
+  digitalWrite(12, HIGH);    // turn the red LED off by making the voltage LOW
+  delay(500);                       // wait for a half-second
+  digitalWrite(11, LOW);   // turn the blue LED on (HIGH is the voltage level)
+  delay(500);                       // wait for a half-second
+  digitalWrite(11, HIGH);    // turn the blue LED off by making the voltage LOW
+  delay(500);                       // wait for a half-second
+  digitalWrite(9, LOW);   // turn the yellow LED on (HIGH is the voltage level)
+  delay(500);                       // wait for a half-second
+  digitalWrite(9, HIGH);    // turn the yellow LED off by making the voltage LOW
+  delay(500);                       // wait for a half-second
+  digitalWrite(11, LOW);   // turn the blue LED on (HIGH is the voltage level)
+  delay(500);                       // wait for a half-second
+  digitalWrite(11, HIGH);    // turn the blue LED off by making the voltage LOW
+  delay(500);                       // wait for a half-second
+}
+            </code>
+        </pre>
             </p>
-            <p>
-            Here is all the documentation for assignment 1!
-            </p>
+            <h2>Circuit</h2>
+                <img src="circuit.jpeg" width=400></a>
+            <h2>Schematic</h2>
+                <img src="schematic.jpeg" width=400></a>
+                <br>
+                
+<pre>
+    <p>
+RED
+V = 5 - 1.8 = 3.2V
+V = I x R = 3.2 = 0.02 x R
+R = 3.2 / 0.02 = 160 ohms
+
+BLUE
+V = 5 - 3.3 = 1.7V
+V = I x R = 1.7 = 0.02 x R
+R = 1.7 / 0.02 = 85 ohms
+
+YELLOW
+(same as RED, 160 ohms)
+
+Both the Red/Yellow and Blue values are below 1000 ohms so the 1000 ohms resistor is a safe choice. 
+</p>
+</pre>
+            
+            <h2>Video</h2>
+                <img src="blink.gif" width=400></a>
+            <br>
+            <br>
+            <br>
         </div>
         
     </body>
