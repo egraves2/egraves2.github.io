@@ -17,7 +17,7 @@
             <p>Create a schematic for at least 3 LEDs connected to your Arduino, which you will implement as a circuit on your breadboard. Write firmware (in a .ino file) for the circuit that makes the LEDs blink in a pattern. 
             <h2>Code Snippet </h2>
             <p>
-                I coded my LEDs so that they would alternate from red to blue to yellow and then reverse to cycle back to red.
+                I coded my LEDs so that they would alternate from red to blue to yellow and then reverse to cycle back to red. Circuit is wired such that Arduino acts as a current sink, not a source. The LED's/resistors are permanently connected to a 5V wire. When the Arduino pin is set HIGH, no current flows through LED because the voltage is the same on both sides. When Arduino pin is set LOW, current flows through the LED into the Arduino.
                 <pre>
             <code>
 // the setup function runs once when you press reset or power the board
