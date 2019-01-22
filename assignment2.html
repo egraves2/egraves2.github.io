@@ -4,7 +4,7 @@
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-        <title>Example Student's HCDE 439 Physical Computing Page!</title> 
+        <title>Erin Graves' HCDE 439 Physical Computing Page!</title> 
 
         <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -12,13 +12,85 @@
     <body> 
 
         <div class="header">
-            <h1>Example Student's Assignment 2!</h1>
+            <h1>Erin Graves' Assignment 2!</h1>
+                        <h2>Overview</h2>
+            <p>Create a schematic, circuit, and code that uses LEDs, a button, a for-loop, digitalWrite(), digitalRead(), and analogWrite(). Document your project on your webpage.
+            <h2>Code Snippet </h2>
             <p>
-            <img src="red-panda.jpg" width=400></a>
+                I coded my two LEDs so that the red LED would repeatedly decrease brightness in a loop when the button is not pressed. When it is pressed, the red LED turns off and the white LED fades in an opposite pattern- the brightness increases instead of decreases.
+                <pre>
+            <code>
+int ledRED = 9;           // the number of the RED LED pin
+int b = 0;    // how bright the LED is
+const int buttonPin = 2;  // the number of the pushbutton pin
+const int ledWHITE = 11;  // the number of the WHITE LED pin
+
+int buttonState = 0;  // variable for reading the pushbutton status
+
+// the setup routine runs once when you press reset:
+void setup() {
+  pinMode(ledRED, OUTPUT);  // initialize the red LED pin as an output
+  pinMode(ledWHITE, OUTPUT); // initialize the white LED pin as an output
+  pinMode(buttonPin, INPUT); // initialize the pushbutton pin as an input
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  buttonState = digitalRead(buttonPin);  // read the state of the pushbutton value
+  // check if the pushbutton is pressed. If it is, the buttonState is HIGH
+  if (buttonState == HIGH) {
+    // turn red LED off:
+    digitalWrite(ledRED, LOW);
+      // increase the brightness gradually
+      for(b=0; b<=255; b++)
+      {
+        //  set the brightness of white LED
+        analogWrite(ledWHITE, b);
+        delay(10);  // delay for 10 milliseconds
+      }
+
+  } else {
+    // turn white LED off:
+    digitalWrite(ledWHITE, LOW);
+    // decrease the brightness gradually
+    for(b=255; b>=0; b--)
+      {
+        //  set the brightness of red LED
+        analogWrite(ledRED, b);
+        delay(10);  // delay for 10 milliseconds
+      }
+  }
+}
+            </code>
+        </pre>
             </p>
-            <p>
-            Here is all the documentation for assignment 2!
-            </p>
+            <h2>Circuit</h2>
+                <img src="fadecircuit.jpg" width=400></a>
+            <h2>Schematic</h2>
+                
+                <br>
+                
+<pre>
+    <p>
+RED
+V = 5 - 1.8 = 3.2V
+V = I x R = 3.2 = 0.02 x R
+R = 3.2 / 0.02 = 160 ohms
+
+WHITE
+V = 5 - 3.3 = 1.7V
+V = I x R = 1.7 = 0.02 x R
+R = 1.7 / 0.02 = 85 ohms
+
+
+Both the Red and White values are below 1000 ohms so the 1000 ohms resistor is a safe choice. 
+</p>
+</pre>
+<h2>Video</h2>
+                <img src="fade.gif" width=400></a>
+            <br>
+            <br>
+            <br>
         </div>
         
     </body>
