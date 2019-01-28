@@ -1,0 +1,101 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+        <title>Erin Graves' HCDE 439 Physical Computing Page!</title> 
+
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+    </head> 
+    <body> 
+
+        <div class="header">
+            <h1>Erin Graves' Assignment 3!</h1>
+                        <h2>Overview</h2>
+            <p>Create a schematic, circuit, and code that uses a sensor (e.g. either the photoresistor or the thermistor) in a voltage divider to change the state of an LED. Your schematic description should explain the values chosen. You have to use analogRead(), analogWrite(), the map function, and an if-statement in your code. You should write something to your serial port, and you may not use the same message as the example code.
+            <h2>Code Snippet </h2>
+            <p>
+                
+                <pre>
+            <code>
+int ledRED = 9;           // the number of the RED LED pin
+int b = 0;    // how bright the LED is 
+const int buttonPin = 2;  // the number of the pushbutton pin
+const int ledWHITE = 11;  // the number of the WHITE LED pin
+
+int buttonState = 0;  // variable for reading the pushbutton status
+
+// the setup routine runs once when you press reset:
+void setup() {
+  pinMode(ledRED, OUTPUT);  // initialize the red LED pin as an output
+  pinMode(ledWHITE, OUTPUT); // initialize the white LED pin as an output
+  pinMode(buttonPin, INPUT); // initialize the pushbutton pin as an input
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  buttonState = digitalRead(buttonPin);  // read the state of the pushbutton value
+  // check if the pushbutton is pressed. If it is, the buttonState is HIGH
+  if (buttonState == HIGH) {
+    // turn red LED off:
+    digitalWrite(ledRED, LOW);
+      // increase the brightness gradually
+      for(b=0; b <= 255; b++)
+      {
+        //  set the brightness of white LED
+        analogWrite(ledWHITE, b);
+        delay(10);  // delay for 10 milliseconds
+      }
+
+  } else {
+    // turn white LED off:
+    digitalWrite(ledWHITE, LOW);
+    // decrease the brightness gradually
+    for(b=255; b>=0; b--)
+      {
+        //  set the brightness of red LED
+        analogWrite(ledRED, b);
+        delay(10);  // delay for 10 milliseconds
+      }
+  }
+}
+            </code>
+        </pre>
+            </p>
+            <h2>Circuit</h2>
+            <p>I coded my two LEDs so that the red LED would repeatedly decrease brightness in a loop when the button is not pressed. When the button is pressed, the red LED turns off and the white LED fades in an opposite pattern- the brightness increases instead of decreases.</p>
+                <img src="inputoutput_circuit.jpg" width=600></a>
+            <h2>Schematic</h2>
+                <img src="inputoutput_schematic.jpg" width=600></a>
+                
+                
+<pre>
+    <p>
+RED
+V = 5 - 1.8 = 3.2V
+V = I x R = 3.2 = 0.02 x R
+R = 3.2 / 0.02 = 160 ohms
+
+WHITE
+V = 5 - 3.3 = 1.7V
+V = I x R = 1.7 = 0.02 x R
+R = 1.7 / 0.02 = 85 ohms
+
+
+Both the Red and White values are below 1000 ohms so the 1000 ohms resistor is a safe choice.
+With the 10k resistor, my current is 5V/10000-Ohm = 0.5mA flowing from 5V to ground. 
+</p>
+</pre>
+<h2>Video</h2>
+                <img src="inputoutput.gif" width=600></a>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        
+    </body>
+</html>
