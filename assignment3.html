@@ -17,7 +17,7 @@
             <p>Create a schematic, circuit, and code that uses a sensor (e.g. either the photoresistor or the thermistor) in a voltage divider to change the state of an LED. Your schematic description should explain the values chosen. You have to use analogRead(), analogWrite(), the map function, and an if-statement in your code. You should write something to your serial port, and you may not use the same message as the example code.
             <h2>Code Snippet </h2>
             <p>
-                
+                I first used the serial monitor to determine the minimum and maximum output values of the photoresistor. I then used this range in the map function.
                 <pre>
             <code>
 const int analogInPin = A0;  // Analog input pin that the photoresistor is attached to
@@ -68,13 +68,22 @@ void loop() {
                 <img src="inputoutput_schematic.jpg" width=600></a>
                 <p>To find the output voltage, I used the voltage divider equation. The photoresistor's values change depending on the environment. I used the maximum and minimum values in the photoresistor's range - 10k ohm in daylight and 1 million ohm in darkness.</p>
                 <img src="inputoutput_equations.jpg" width=600></a>
-                
-                
-<pre>
-    <p>
+                <p> The max current through the arduino can be 0.02 amps. Using this value and the voltage drops across each LED, I determined the resistance for each LED.
 
-</p>
-</pre>
+                <pre>
+BLUE
+V = 5 - 3.3 = 1.7V
+V = I x R = 1.7 = 0.02 x R
+R = 1.7 / 0.02 = 85 ohms
+
+YELLOW
+V = 5 - 1.8 = 3.2V
+V = I x R = 3.2 = 0.02 x R
+R = 3.2 / 0.02 = 160 ohms
+                </pre>
+                  <p>Both values are below 1000 so a 1000 ohm resistor is a safe choice. A 10k ohm resistor is needed in series with the photoresistor. The photoresistor can have a very low resistance, allowing the 5V to flow to ground and damage the arduino. Therefore an additonal fixed resistor is needed.
+                </p>
+
 <h2>Video</h2>
                 <img src="inputoutput.gif" width=600></a>
             <br>
