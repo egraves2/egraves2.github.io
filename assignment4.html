@@ -28,7 +28,7 @@ void setup() {
   // initialize serial communications at 9600 bps:
   Serial.begin(9600);
   pinMode(ledPin, OUTPUT); // initialize pin 11 as output for LED brightness
-  pinMode(inPin, INPUT); // initialize pin A0 as input sensor
+  pinMode(inPin, INPUT); // initialize pin A0 as input for the sensor
 }
 // repeats
 void loop() {
@@ -74,11 +74,14 @@ void loop() {
                 <img src="highvoltage_schematic.jpg" width=600></a>
                 <p>I used a third of the LED strip and the maximum watts of the full strip is 18 watts, so my strip was 6 watts. Using the equation P = I * V, I was able to find the current through the transistor. 6W = I * 12V -> I = 0.5A. This current is less than 0.6A and can therefore travel through the transistor. </p>
 
-                <p>The photoresistor works the same as assignment 3. A 10k ohm resistor is needed in series with the photoresistor. The photoresistor can have a very low resistance, allowing the 5V to flow to ground and damage the arduino. Therefore an additonal fixed resistor is needed.</p>
+              
+
+                <p>The photoresistor works the same as assignment 3. The photoresistor can have a very low resistance, allowing the 5V to flow to ground and damage the arduino. Therefore an additonal 10k ohm resistor is needed. 10k ohms is safe since a maximum of 0.002A can flow through the arduino. 5V / 0.02A = 250 ohms. Therefore 10k ohms is safe.</p>
+
 
 
 <h2>Video</h2>
-                <img src="highvoltage.gif" width=600></a>
+                <img src="highvoltage2.gif" width=600></a>
             <br>
             <br>
             <br>
