@@ -17,18 +17,64 @@
             <p>Create a schematic, circuit, and code that uses a transistor to control load power separate from logic power. You have to use analogWrite(), a high-load output device, and an input sensor.
             <h2>Code Snippet </h2>
             <p>
-                
+                I first used the serial monitor to determine the minimum and maximum output values of the photoresistor. I then used this range in the map function.
                 <pre>
             <code>
-
+const int inPin = A0;  // Analog input pin that the photoresistor is attached to
+const int ledPin = 11; // Analog output pin that the transistor is attached to
+int sensorValue = 0;        // value read from the photoresistor
+int outputValue = 0;        // value output to the LED strip
+void setup() {
+  // initialize serial communications at 9600 bps:
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT); // initialize pin 11 as output for LED brightness
+  pinMode(inPin, INPUT); // initialize pin A0 as input sensor
+}
+// repeats
+void loop() {
+  // read the analog in value of the photoresistor
+  int value = analogRead(inPin);
+  // limits values to specified range
+  sensorValue = constrain(value, 30, 220);
+  // map values to new range of output values
+  outputValue = map(sensorValue, 30, 220, 0, 255);
+  analogWrite(ledPin, outputValue); // turns on the LED strip
+  // print label for sensor value
+  Serial.print("sensor = ");
+  //print sensor value
+  Serial.print(sensorValue);
+  //print label for output
+  Serial.print("\t output = ");
+  //print output value
+  Serial.println(outputValue);
+  // wait 2 milliseconds before the next loop for the analog-to-digital
+  // converter to settle after the last reading:
+  delay(2);
+}
             </code>
         </pre>
             </p>
             <h2>Circuit</h2>
-            <p></p>
+            <p>My circuit is coded so that the LED strip decreases in brightness when the photoresistor is in a darker environment. My materials include:
+              <u1>
+                <li>breadboard</li>
+                <li>arduino (5V)</li>
+                <li>two alligator clips</li>
+                <li>one third of an rgb LED strip</li>
+                <li>transistor</li>
+                <li>photoresistor</li>
+                <li>two 10k ohm resistors</li>
+                <li>power adapter (12V)</li>
+                <li>10 wires</li>
+              </u1>
+
+                </p>
                 <img src="highvoltage_circuit.jpg" width=600></a>
             <h2>Schematic</h2>
-                
+                <img src="highvoltage_schematic.jpg" width=600></a>
+                <p>I used a third of the LED strip and the maximum watts of the full strip is 18 watts, so my strip was 6 watts. Using the equation P = I * V, I was able to find the current through the transistor. 6W = I * 12V -> I = 0.5A. This current is less than 0.6A and can therefore travel through the transistor. </p>
+
+                <p>The photoresistor works the same as assignment 3. A 10k ohm resistor is needed in series with the photoresistor. The photoresistor can have a very low resistance, allowing the 5V to flow to ground and damage the arduino. Therefore an additonal fixed resistor is needed.</p>
 
 
 <h2>Video</h2>
