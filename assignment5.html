@@ -54,6 +54,9 @@ void loop() {
                 </p>
                 <img src="motor_circuit.jpg" width=600></a>
             <h2>Schematic</h2>
+            <p>I first checked the serial monitor while moving the joystick vertically up and down to check what the output values were. The minimum (down on joystick) was 0 while the maximum (up on joystick) was around 1023. Since the servo can change its angle between 0 and 180 degrees, I decided to map the minimum y value to the minimum servo angle. I did the same for the maximum y value and servo angle. Therefore, when the joystick is up, the servo is at 180 degrees. When the joystick is in the middle, the servo is at 90 degrees. And when the joystick is down, the servo is at 0 degrees.</p>
+
+            <p>No resistor was needed because the interior of the servo contains a resistor.</p>
                 <img src="motor_schematic.jpg" width=600></a>
                 
 
