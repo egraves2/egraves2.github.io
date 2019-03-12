@@ -12,9 +12,20 @@
     <body> 
 
         <div class="header">
-            <h1>Erin Graves' Final Project!</h1>
-                        <h2>Ideas</h2>
-            <img src="finalprojectideas.jpg" width=800></a>
+            <h1>GPU Temperature Monitor</h1>
+            <img src="finalproject.jpg" width=800></a>
+            <p><i>For my final project, I designed a system for measuring the temperature of a GPU and warning the user if the GPU gets too hot.</i></p>
+
+            <h2>Concept</h2>
+
+            <p>My PC has a R9 290 graphics card that is notorious for running quite hot. It's safer for GPU's to stay under 85C and most begin overheating at 95C. There have been many times where I have been gaming and putting my graphics card under a heavy load and did not realize that its temperature was exceeding 88C. To check the temperature, I usually use programs like GPU-Z or MSI Afterburner, but these do not alert me when the temperature get's too high.</p>
+
+            
+
+            <h2>How it works</h2>
+            <p>I designed a system with a visual warning when the temperature exceeds 88C. LED lights flash and then flash faster when the temperature reaches 91C.</p>
+
+            <p>I also realized that it would be helpful to see the current temperature of the GPU, so I included an LCD display showing the current temperature. The temperature is also displayed on a webpage using p5.js. A graph shows the change in temperature over time, and when the temperature exceeds 88C, an image of the canvas is saved. This is helpful for knowing the exact time that a GPU begins to overheat.</p>
         
     </body>
 </html>
