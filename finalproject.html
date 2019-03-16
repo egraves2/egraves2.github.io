@@ -79,18 +79,22 @@
 
 
             <h2>Schematic</h2>
+            <p>Below is the schematic of my circuit. Connecting my LCD display to the arduino in the project was a little difficult since there were so many pins that needed to be connected. I used different colors for these wires here to better show their connections. On the top of the arduino, 5V is connected to both the thermistor and LCD display, while the 12V power supply is connected to the LED strip. All components also connect back to ground, as seen at the bottom of the arduino in the schematic. I did not use the backlight pins for the LCD display since I thought the text was easy to read when only using the potentiometer for brightness. I also only used four data pins for 4-bit mode since this was sufficient for showing only text on screen.</p>
             <img src="finalproject_schematic.jpg" width=800></a>
 
             <h2>Circuit</h2>
+            <p>I placed my circuit in a 3D printed box that I designed in SolidWorks. The enclosure has a lid and the main compartment has a cut-out along the side for the USB cable, thermistor, LED strip, and power supply cable to come out of.</p>
             <img src="finalproject_bb.png" width=600></a>
             <img src="final_circuit.jpg" width=400></a>
 
             <h2>Code</h2>
             <h3>Arduino</h3>
+            <p>My Arduino code is quite simple. I used analogRead to get the thermistor's resistance values and the equation from my graph above to convert to temperature. When temperature is between 88 and 91, an if statement is used to flash the LED strip. At 91C, the LED strip flashes faster. The temperature is printed in an array to send the data to my p5.js code. Lastly, the temperature is printed on the LCD display.</p>
             <img src="finalcode1.png" width=600></a>
             <br>
             <img src="finalcode2.png" width=600></a>
-            <h3>p5.js</h3>
+            <h3>sketch.js</h3>
+            <p>My sketch.js code mostly uses code from the two-input example from class. My thermistor's temperature is graphed and the current time is displayed. In the draw() function, I included code to save an image of the entire canvas if the temperature exceeds 88C. When I first coded this, reaching 89C caused the program to save 20+ screenshots of the graph. So I included noLoop() so only one photo would be saved.</p>
             <pre>
                 <code>
 var serial; // variable to hold an instance of the serialport library
@@ -201,12 +205,10 @@ function draw() {
 
 
                 </code>
-
-
-
             </pre>
 
             <h2>Demo Video</h2>
+            <p>My demo video shows a quick increase in temperature while I run a benchmarking program. I also tested the temperature while in a game to make sure I got similar temperature readings.</p>
             <video width="600" controls>
   <source src="finalprojectdemo.mp4" type="video/mp4">
 </video>
